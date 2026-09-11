@@ -24,42 +24,42 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Guaranteed Accurate Image Links for Each Vegetable
+# Fixed & Verified Direct Image URLs for Vegetables
 DEFAULT_CATALOG = {
     # 1. दैनिक सब्जियाँ
-    "🥔 आलू (Potato)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400"},
-    "🧅 प्याज (Onion)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=400"},
-    "🍅 टमाटर (Tomato)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400"},
-    "🌶️ हरी मिर्च (Green Chilli)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=400"},
-    "🫚 अदरक (Ginger)": {"price": 120.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
-    "🧄 लहसुन (Garlic)": {"price": 180.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?w=400"},
-    "🍋 नींबू (Lemon)": {"price": 5.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1534531141161-e41604086968?w=400"},
+    "🥔 आलू (Potato)": {"price": 25.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patatas.jpg/400px-Patatas.jpg"},
+    "🧅 प्याज (Onion)": {"price": 35.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/400px-Onion_on_White.JPG"},
+    "🍅 टमाटर (Tomato)": {"price": 30.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/400px-Tomato_je.jpg"},
+    "🌶️ हरी मिर्च (Green Chilli)": {"price": 60.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Green_Chili_Pepper.jpg/400px-Green_Chili_Pepper.jpg"},
+    "🫚 अदरक (Ginger)": {"price": 120.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Ginger_root.jpg/400px-Ginger_root.jpg"},
+    "🧄 लहसुन (Garlic)": {"price": 180.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Garlic_bulbs.jpg/400px-Garlic_bulbs.jpg"},
+    "🍋 नींबू (Lemon)": {"price": 5.0, "unit": "pc", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lemon.jpg/400px-Lemon.jpg"},
 
     # 2. हरी और पत्तेदार सब्जियाँ
-    "🥬 पालक (Spinach)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400"},
-    "🌿 धनिया पत्ती (Coriander)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588879460618-924a1329a6b1?w=400"},
-    "🌱 पुदीना (Mint)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400"},
+    "🥬 पालक (Spinach)": {"price": 30.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Spinach_leaves.jpg/400px-Spinach_leaves.jpg"},
+    "🌿 धनिया पत्ती (Coriander)": {"price": 80.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Cilantro.jpg/400px-Cilantro.jpg"},
+    "🌱 पुदीna (Mint)": {"price": 60.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Mint-leaves.jpg/400px-Mint-leaves.jpg"},
 
     # 3. गोभी और बीन्स परिवार
-    "🥦 फूलगोभी (Cauliflower)": {"price": 40.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=400"},
-    "🥬 पत्तागोभी (Cabbage)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=400"},
-    "🥦 ब्रोकोली (Broccoli)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400"},
-    "🫘 फ़्रेंच बीन्स (French Beans)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400"},
+    "🥦 फूलगोभी (Cauliflower)": {"price": 40.0, "unit": "pc", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Cauliflower.jpg/400px-Cauliflower.jpg"},
+    "🥬 पत्तागोभी (Cabbage)": {"price": 30.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cabbage_and_cross_section.jpg/400px-Cabbage_and_cross_section.jpg"},
+    "🥦 ब्रोकोली (Broccoli)": {"price": 80.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Broccoli_and_cross_section_edit.jpg/400px-Broccoli_and_cross_section_edit.jpg"},
+    "🫘 फ़्रेंच बीन्स (French Beans)": {"price": 50.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Green_beans_display.jpg/400px-Green_beans_display.jpg"},
 
     # 4. लौकी, कद्दू और खीरा
-    "🥒 लौकी (Bottle Gourd)": {"price": 30.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400"},
-    "🎃 कद्दू / कोहरा (Pumpkin)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=400"},
-    "🥒 खीरा (Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400"},
+    "🥒 लौकी (Bottle Gourd)": {"price": 30.0, "unit": "pc", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Calabash_2.jpg/400px-Calabash_2.jpg"},
+    "🎃 कद्दू / कोहरा (Pumpkin)": {"price": 25.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/GREAT_PUMPKIN.jpg/400px-GREAT_PUMPKIN.jpg"},
+    "🥒 खीरा (Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Cucumbers_building.jpg/400px-Cucumbers_building.jpg"},
 
     # 5. जड़ वाली सब्जियाँ
-    "🥕 गाजर (Carrot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1598170845058-12ef4a457939?w=400"},
-    "🧅 चुकंदर (Beetroot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1528825871115-3581a5387919?w=400"},
+    "🥕 गाजर (Carrot)": {"price": 40.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Carrots_at_Ljubljana_Central_Market.jpg/400px-Carrots_at_Ljubljana_Central_Market.jpg"},
+    "🧅 चुकंदर (Beetroot)": {"price": 40.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Beetroot_bundle.jpg/400px-Beetroot_bundle.jpg"},
 
     # 6. अन्य लोकप्रिय सब्जियाँ
-    "🫑 शिमला मिर्च (Capsicum)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400"},
-    "🍆 बैंगन (Brinjal)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1613743983387-f827471fb62e?w=400"},
-    "🫛 हरा मटर (Green Peas)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=400"},
-    "🌽 मक्का / भुट्टा (Sweet Corn)": {"price": 20.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400"}
+    "🫑 शिमला मिर्च (Capsicum)": {"price": 60.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Green_bell_pepper.jpg/400px-Green_bell_pepper.jpg"},
+    "🍆 बैंगन (Brinjal)": {"price": 35.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Solanum_melongena_24_08_2012_%281%29.JPG/400px-Solanum_melongena_24_08_2012_%281%29.JPG"},
+    "🫛 हरा मटर (Green Peas)": {"price": 60.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Peas_in_pod_-_Studio.jpg/400px-Peas_in_pod_-_Studio.jpg"},
+    "🌽 मक्का / भुट्टा (Sweet Corn)": {"price": 20.0, "unit": "pc", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Corn_on_the_cob_1.jpg/400px-Corn_on_the_cob_1.jpg"}
 }
 
 # Session Data Setup
@@ -95,7 +95,7 @@ with tab1:
 
         for item_name, details in vendor_data["items"].items():
             if details.get("available", True):
-                img_url = DEFAULT_CATALOG.get(item_name, {}).get("image", "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400")
+                img_url = DEFAULT_CATALOG.get(item_name, {}).get("image", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patatas.jpg/400px-Patatas.jpg")
                 
                 col_img, col_desc = st.columns([1, 2])
                 with col_img:
