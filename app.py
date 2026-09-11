@@ -24,73 +24,52 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Master Catalog with 50+ Vegetables, Default Rates, Units and High-Quality Unsplash Photos
+# Master Catalog with Accurate Images & Market Rates
 DEFAULT_CATALOG = {
     # 1. दैनिक और मुख्य सब्जियाँ
-    "आलू (Potato)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300"},
-    "प्याज (Onion)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=300"},
-    "टमाटर (Tomato)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "हरी मिर्च (Green Chilli)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=300"},
-    "अदरक (Ginger)": {"price": 120.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300"},
-    "लहसुन (Garlic)": {"price": 180.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?w=300"},
-    "नींबू (Lemon)": {"price": 5.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1534531141161-e41604086968?w=300"},
+    "आलू (Potato)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400"},
+    "प्याज (Onion)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=400"},
+    "टमाटर (Tomato)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400"},
+    "हरी मिर्च (Green Chilli)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=400"},
+    "अदरक (Ginger)": {"price": 120.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
+    "लहसुन (Garlic)": {"price": 180.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?w=400"},
+    "नींबू (Lemon)": {"price": 5.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1534531141161-e41604086968?w=400"},
 
     # 2. हरी और पत्तेदार सब्जियाँ
-    "पालक (Spinach)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300"},
-    "मेथी (Fenugreek)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300"},
-    "धनिया पत्ती (Coriander)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588879460618-924a1329a6b1?w=300"},
-    "पुदीना (Mint)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=300"},
-    "सरसों का साग (Mustard Greens)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300"},
-    "चौलाई (Amaranth)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300"},
-    "बथुआ (Chenopodium)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300"},
+    "पालक (Spinach)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400"},
+    "धनिया पत्ती (Coriander)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1588879460618-924a1329a6b1?w=400"},
+    "पुदीना (Mint)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400"},
 
     # 3. गोभी एवं बीन्स परिवार
-    "फूलगोभी (Cauliflower)": {"price": 40.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=300"},
-    "पत्तागोभी (Cabbage)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300"},
-    "ब्रोकोली (Broccoli)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=300"},
-    "गांठ गोभी (Kohlrabi)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300"},
-    "बोरा / बरबटी (Long Beans)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300"},
-    "फ़्रेंच बीन्स (French Beans)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300"},
-    "सेम (Flat Beans)": {"price": 45.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300"},
-    "गवार फली (Cluster Beans)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300"},
+    "फूलगोभी (Cauliflower)": {"price": 40.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?w=400"},
+    "पत्तागोभी (Cabbage)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=400"},
+    "ब्रोकोली (Broccoli)": {"price": 80.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400"},
+    "फ़्रेंच बीन्स (French Beans)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400"},
 
-    # 4. लौकी, कद्दू एवं तरोई वर्ग
-    "लौकी (Bottle Gourd)": {"price": 30.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "कद्दू / कोहरा (Pumpkin)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=300"},
-    "नेनुआ / तरोई (Sponge Gourd)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "झिंगी (Ridge Gourd)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "करेला (Bitter Gourd)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628773822503-930a8581898e?w=300"},
-    "परवल (Pointed Gourd)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "कुंदरू (Ivy Gourd)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "खीरा (Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300"},
-    "ककड़ी (Snake Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300"},
-    "पेठा / कद्दू (Ash Gourd)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=300"},
+    # 4. लौकी, कद्दू एवं खीरा वर्ग
+    "लौकी (Bottle Gourd)": {"price": 30.0, "unit": "pc", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Calabash_2.jpg/400px-Calabash_2.jpg"},
+    "कद्दू / कोहरा (Pumpkin)": {"price": 25.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1570586437263-ab629fccc818?w=400"},
+    "करेला (Bitter Gourd)": {"price": 50.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Momordica_charantia_12.JPG/400px-Momordica_charantia_12.JPG"},
+    "खीरा (Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400"},
+    "ककड़ी (Snake Cucumber)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?w=400"},
 
     # 5. जड़ एवं कंद वाली सब्जियाँ
-    "गाजर (Carrot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1598170845058-12ef4a457939?w=300"},
-    "मूली (Radish)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "चुकंदर (Beetroot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1528825871115-3581a5387919?w=300"},
-    "अरबी (Taro Root)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300"},
-    "ओल / जिमीकंद (Elephant Yam)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300"},
-    "सकरकंद (Sweet Potato)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300"},
-    "शलजम (Turnip)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
+    "गाजर (Carrot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1598170845058-12ef4a457939?w=400"},
+    "मूली (Radish)": {"price": 30.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Daikon_radish.jpg/400px-Daikon_radish.jpg"},
+    "चुकंदर (Beetroot)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1528825871115-3581a5387919?w=400"},
+    "अरबी (Taro Root)": {"price": 40.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Taro_root.jpg/400px-Taro_root.jpg"},
+    "ओल / जिमीकंद (Elephant Yam)": {"price": 50.0, "unit": "kg", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Elephant_foot_yam.jpg/400px-Elephant_foot_yam.jpg"},
 
     # 6. अन्य लोकप्रिय सब्जियाँ
-    "भिंडी (Lady Finger)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628773822503-930a8581898e?w=300"},
-    "बैंगन (Brinjal)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1613743983387-f827471fb62e?w=300"},
-    "हरा मटर (Green Peas)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=300"},
-    "सहजन / मुनगा (Drumstick)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "शिमला मिर्च (Capsicum)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=300"},
-    "कच्चा केला (Raw Banana)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300"},
-    "कच्चा पपीता (Raw Papaya)": {"price": 30.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1517260739337-6799d239ce83?w=300"},
-    "कटहल (Jackfruit)": {"price": 50.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300"},
-    "मशरूम (Mushroom)": {"price": 50.0, "unit": "packet", "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300"},
-    "मक्का / भुट्टा (Sweet Corn)": {"price": 20.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300"}
+    "भिंडी (Lady Finger)": {"price": 40.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1628773822503-930a8581898e?w=400"},
+    "बैंगन (Brinjal)": {"price": 35.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1613743983387-f827471fb62e?w=400"},
+    "हरा मटर (Green Peas)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=400"},
+    "शिमला मिर्च (Capsicum)": {"price": 60.0, "unit": "kg", "image": "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400"},
+    "मक्का / भुट्टा (Sweet Corn)": {"price": 20.0, "unit": "pc", "image": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=400"}
 }
 
 # Initialize Multi-vendor Session Data
 if "vendors" not in st.session_state:
-    # Default initial vendor using master catalog items
     init_items = {}
     for k, v in DEFAULT_CATALOG.items():
         init_items[k] = {"price": v["price"], "unit": v["unit"], "available": True}
@@ -124,7 +103,7 @@ with tab1:
 
         for item_name, details in vendor_data["items"].items():
             if details.get("available", True):
-                img_url = DEFAULT_CATALOG.get(item_name, {}).get("image", "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300")
+                img_url = DEFAULT_CATALOG.get(item_name, {}).get("image", "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400")
                 
                 col_img, col_desc = st.columns([1, 2])
                 with col_img:
@@ -168,7 +147,6 @@ with tab2:
         new_phone = st.text_input("WhatsApp नंबर (उदा: 919876543210)")
         if st.button("दुकान खोलें"):
             if new_shop and new_phone:
-                # Initialize new vendor with master catalog
                 v_init_items = {}
                 for k, v in DEFAULT_CATALOG.items():
                     v_init_items[k] = {"price": v["price"], "unit": v["unit"], "available": True}
