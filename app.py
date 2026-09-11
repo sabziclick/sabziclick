@@ -3,25 +3,24 @@ import urllib.parse
 
 st.set_page_config(page_title="Sabziclick - Multi-Vendor Mandi", page_icon="🥦", layout="centered")
 
-# Session state initialization for multi-vendor storage
-if "vendors" not in st.items() if hasattr(st, "items") else st.session_state:
-    if "vendors" not in st.session_state:
-        st.session_state.vendors = {
-            "रामू गुप्ता (गुप्ता वेजीटेबल्स)": {
-                "phone": "919876543210",
-                "items": [
-                    {"name": "आलू (Potato)", "price": 25, "unit": "kg"},
-                    {"name": "प्याज (Onion)", "price": 35, "unit": "kg"}
-                ]
-            },
-            "अहमद ट्रेडर्स": {
-                "phone": "919123456789",
-                "items": [
-                    {"name": "टमाटर (Tomato)", "price": 40, "unit": "kg"},
-                    {"name": "गोभी (Cauliflower)", "price": 30, "unit": "pc"}
-                ]
-            }
+# Correct session state initialization
+if "vendors" not in st.session_state:
+    st.session_state.vendors = {
+        "रामू गुप्ता (गुप्ता वेजीटेबल्स)": {
+            "phone": "919876543210",
+            "items": [
+                {"name": "आलू (Potato)", "price": 25, "unit": "kg"},
+                {"name": "प्याज (Onion)", "price": 35, "unit": "kg"}
+            ]
+        },
+        "अहमद ट्रेडर्स": {
+            "phone": "919123456789",
+            "items": [
+                {"name": "टमाटर (Tomato)", "price": 40, "unit": "kg"},
+                {"name": "गोभी (Cauliflower)", "price": 30, "unit": "pc"}
+            ]
         }
+    }
 
 st.title("🥦 Sabziclick - किशनगंज सब्जी मंडी")
 st.caption("स्थानीय विक्रेताओं से सीधे घर पर ताज़ा सब्ज़ी मँगवाएँ!")
@@ -133,7 +132,6 @@ with tab2:
                 else:
                     st.error("सब्जी का नाम दर्ज करें।")
             
-            # Display current items
             st.write("---")
             st.subheader(f"आपकी वर्तमान सब्जियाँ ({v_select}):")
             current_items = st.session_state.vendors[v_select]["items"]
