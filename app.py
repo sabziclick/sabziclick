@@ -1,68 +1,144 @@
 import streamlit as st
+import urllib.parse
 
-st.set_page_config(page_title="Kishanganj Sabzi Mandi", page_icon="🥦")
+st.set_page_config(page_title="Sabziclick - Multi-Vendor Mandi", page_icon="🥦", layout="centered")
 
-st.title("🥦 किशनगंज ताज़ा सब्ज़ी बाज़ार")
-st.write("किशनगंज के स्थानीय विक्रेताओं से सीधे घर पर ताज़ा सब्ज़ी मँगवाएँ!")
+# Session state initialization for multi-vendor storage
+if "vendors" not in st.items() if hasattr(st, "items") else st.session_state:
+    if "vendors" not in st.session_state:
+        st.session_state.vendors = {
+            "रामू गुप्ता (गुप्ता वेजीटेबल्स)": {
+                "phone": "919876543210",
+                "items": [
+                    {"name": "आलू (Potato)", "price": 25, "unit": "kg"},
+                    {"name": "प्याज (Onion)", "price": 35, "unit": "kg"}
+                ]
+            },
+            "अहमद ट्रेडर्स": {
+                "phone": "919123456789",
+                "items": [
+                    {"name": "टमाटर (Tomato)", "price": 40, "unit": "kg"},
+                    {"name": "गोभी (Cauliflower)", "price": 30, "unit": "pc"}
+                ]
+            }
+        }
 
-tab1, tab2 = st.tabs(["🛒 सब्ज़ी खरीदें (Customer)", "🧺 सब्ज़ी बेचें (Vendor)"])
+st.title("🥦 Sabziclick - किशनगंज सब्जी मंडी")
+st.caption("स्थानीय विक्रेताओं से सीधे घर पर ताज़ा सब्ज़ी मँगवाएँ!")
 
+tab1, tab2 = st.tabs(["🛒 सब्जी खरीदें (Customer)", "🏪 दुकानदार पोर्टल (Vendor Register/Login)"])
+
+# ---------------------------------------------------------
+# TAB 1: CUSTOMER VIEW (Buy Vegetables)
+# ---------------------------------------------------------
 with tab1:
-    st.header("ताज़ा सब्ज़ियों की दरें")
+    st.header("दुकानदार चुनें")
     
-    veggies = [
-        {"name": "आलू (Potato)", "price": 25, "unit": "kg", "vendor": "रामू गुप्ता", "phone": "919876543210"},
-        {"name": "प्याज (Onion)", "price": 35, "unit": "kg", "vendor": "रामू गुप्ता", "phone": "919876543210"},
-        {"name": "टमाटर (Tomato)", "price": 40, "unit": "kg", "vendor": "अहमद ट्रेडर्स", "phone": "919123456789"}
-    ]
-    
-    selected_items = []
-    for veg in veggies:
-        col1, col2, col3 = st.columns([2, 1, 1])
-        col1.write(f"**{veg['name']}** ({veg['vendor']})")
-        col2.write(f"₹{veg['price']} / {veg['unit']}")
-        qty = col3.number_input(f"मात्रा ({veg['unit']})", min_value=0.0, step=0.5, key=veg['name'])
+    if not st.session_state.vendors:
+        st.info("अभी कोई दुकानदार रजिस्टर नहीं है।")
+    else:
+        vendor_names = list(st.session_state.vendors.keys())
+        selected_vendor_name = st.selectbox("सब्जी की दुकान चुनें:", vendor_names)
         
-        if qty > 0:
-            selected_items.append({"name": veg['name'], "qty": qty, "price": veg['price'] * qty, "phone": veg['phone']})
-
-    st.divider()
-    
-    if selected_items:
-        st.subheader("आपका ऑर्डर (Order Summary)")
-        total_amount = sum(item["price"] for item in selected_items)
+        vendor_info = st.session_state.vendors[selected_vendor_name]
+        vendor_phone = vendor_info["phone"]
+        vendor_items = vendor_info["items"]
         
-        for item in selected_items:
-            st.write(f"- {item['name']}: {item['qty']} kg = ₹{item['price']}")
-        st.markdown(f"### कुल राशि: **₹{total_amount}**")
+        st.subheader(f"🏪 {selected_vendor_name} की ताज़ा दरें")
         
-        cust_name = st.text_input("आपका नाम")
-        cust_address = st.text_input("पूरा पता (किशनगंज)")
+        order_details = []
+        total_amount = 0.0
         
-        if st.button("WhatsApp पर ऑर्डर भेजें 📲"):
-            if cust_name and cust_address:
-                msg = f"नया ऑर्डर!\nनाम: {cust_name}\nपता: {cust_address}\nसामान:\n"
-                for item in selected_items:
-                    msg += f"- {item['name']}: {item['qty']} kg\n"
-                msg += f"कुल: ₹{total_amount}"
+        for idx, item in enumerate(vendor_items):
+            col1, col2, col3 = st.columns([2, 1, 1])
+            with col1:
+                st.write(f"**{item['name']}**")
+                st.write(f"₹{item['price']} / {item['unit']}")
+            with col2:
+                qty = st.number_input(f"मात्रा ({item['unit']})", min_value=0.0, step=0.5, key=f"cust_{selected_vendor_name}_{idx}")
+            with col3:
+                item_total = qty * item['price']
+                st.write(f"कुल: ₹{item_total:.1f}")
                 
-                vendor_phone = selected_items[0]['phone']
-                whatsapp_url = f"https://wa.me/{vendor_phone}?text={msg.replace(' ', '%20').replace('\n', '%0A')}"
-                
-                st.success("ऑर्डर तैयार है! नीचे दिए बटन पर क्लिक करके WhatsApp पर भेजें:")
-                st.markdown(f"[📲 WhatsApp पर मैसेज भेजें]({whatsapp_url})", unsafe_allow_html=True)
-            else:
-                st.error("कृपया नाम और पता भरें!")
+            if qty > 0:
+                order_details.append(f"• {item['name']}: {qty} {item['unit']} (₹{item_total:.1f})")
+                total_amount += item_total
+            st.divider()
+            
+        if total_amount > 0:
+            st.success(f"**कुल योग: ₹{total_amount:.1f}**")
+            st.subheader("डिलीवरी का पता लिखें")
+            cust_name = st.text_input("आपका नाम", key="c_name")
+            cust_address = st.text_input("पूरा पता (जैसे: लाइन मस्जिद रोड, किशनगंज)", key="c_addr")
+            
+            if st.button("📲 WhatsApp पर ऑर्डर भेजें"):
+                if not cust_name or not cust_address:
+                    st.error("कृपया अपना नाम और पता दर्ज करें!")
+                else:
+                    msg = f"नया ऑर्डर ({selected_vendor_name} के लिए)!\n"
+                    msg += f"नाम: {cust_name}\n"
+                    msg += f"पता: {cust_address}\n\n"
+                    msg += "सामान:\n" + "\n".join(order_details) + "\n\n"
+                    msg += f"कुल बिल: ₹{total_amount:.1f}"
+                    
+                    encoded_msg = urllib.parse.quote(msg)
+                    whatsapp_url = f"https://wa.me/{vendor_phone}?text={encoded_msg}"
+                    
+                    st.markdown(f'<a href="{whatsapp_url}" target="_blank" style="background-color:#25D366;color:white;padding:10px 15px;border-radius:5px;text-decoration:none;font-weight:bold;">ऑर्डर की पुष्टि करें (WhatsApp खोलें)</a>', unsafe_allow_html=True)
 
+# ---------------------------------------------------------
+# TAB 2: VENDOR PORTAL (Register & Manage Products)
+# ---------------------------------------------------------
 with tab2:
-    st.header("विक्रेता पोर्टल (Vendor Portal)")
-    st.write("अपनी दुकान और आज की ताज़ा सब्ज़ियाँ जोड़ें")
+    st.header("अपनी दुकान रजिस्टर करें या नई सब्जी जोड़ें")
     
-    v_name = st.text_input("दुकान / आपका नाम")
-    v_phone = st.text_input("व्हाट्सएप नंबर")
-    veg_name = st.text_input("सब्ज़ी का नाम (उदा. बैंगन)")
-    veg_price = st.number_input("दाम (₹ प्रति kg)", min_value=1)
+    vendor_action = st.radio("आप क्या करना चाहते हैं?", ["नई दुकान रजिस्टर करें", "मौजूदा दुकान में सब्जी जोड़ें"])
     
-    if st.button("सब्ज़ी लिस्ट करें"):
-        st.success(f"{veg_name} (₹{veg_price}/kg) सफलतापूर्वक जोड़ दिया गया!")
+    if vendor_action == "नई दुकान रजिस्टर करें":
+        st.subheader("1. नई दुकान का रजिस्ट्रेशन")
+        new_v_name = st.text_input("दुकान या विक्रेता का नाम (उदा: गुप्ता वेजीटेबल्स)")
+        new_v_phone = st.text_input("WhatsApp नंबर (देश के कोड के साथ, उदा: 919876543210)")
+        
+        if st.button("दुकान रजिस्टर करें"):
+            if new_v_name and new_v_phone:
+                if new_v_name not in st.session_state.vendors:
+                    st.session_state.vendors[new_v_name] = {"phone": new_v_phone, "items": []}
+                    st.success(f"बधाई हो! '{new_v_name}' रजिस्टर हो गई है। अब नीचे सब्जी जोड़ें।")
+                else:
+                    st.warning("यह दुकान पहले से रजिस्टर है!")
+            else:
+                st.error("कृपया दुकान का नाम और WhatsApp नंबर दोनों भरें।")
 
+    elif vendor_action == "मौजूदा दुकान में सब्जी जोड़ें":
+        st.subheader("2. अपनी दुकान में सामान/रेट अपडेट करें")
+        if not st.session_state.vendors:
+            st.info("पहले कोई दुकान रजिस्टर करें।")
+        else:
+            v_select = st.selectbox("अपनी दुकान चुनें:", list(st.session_state.vendors.keys()))
+            
+            st.write("---")
+            st.markdown("**नई सब्जी जोड़ें:**")
+            prod_name = st.text_input("सब्जी का नाम (उदा: भिंडी / Lady Finger)")
+            prod_price = st.number_input("दाम (₹)", min_value=1.0, step=1.0)
+            prod_unit = st.selectbox("इकाई (Unit)", ["kg", "pc", "gram", "packet"])
+            
+            if st.button("सब्जी जोड़ें"):
+                if prod_name:
+                    st.session_state.vendors[v_select]["items"].append({
+                        "name": prod_name,
+                        "price": prod_price,
+                        "unit": prod_unit
+                    })
+                    st.success(f"'{prod_name}' आपकी दुकान में जोड़ दी गई है!")
+                else:
+                    st.error("सब्जी का नाम दर्ज करें।")
+            
+            # Display current items
+            st.write("---")
+            st.subheader(f"आपकी वर्तमान सब्जियाँ ({v_select}):")
+            current_items = st.session_state.vendors[v_select]["items"]
+            if current_items:
+                for item in current_items:
+                    st.write(f"• **{item['name']}** - ₹{item['price']} / {item['unit']}")
+            else:
+                st.info("अभी कोई सब्जी नहीं जोड़ी गई है।")
